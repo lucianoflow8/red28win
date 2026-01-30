@@ -11,6 +11,9 @@ const WHATSAPP_LINK =
 
 const BG_GIF = process.env.NEXT_PUBLIC_BG_GIF || "/bg.gif";
 
+// ✅ Modo configuración Meta (si es "1" NO redirige a WhatsApp)
+const META_CONFIG_MODE = process.env.NEXT_PUBLIC_META_CONFIG_MODE === "1";
+
 // Poné tu logo en: /public/whatsapp.png
 const WA_ICON = "/whatsapp.png";
 
@@ -43,6 +46,9 @@ export default function Home() {
     if (PIXEL_ID && typeof window !== "undefined" && window.fbq) {
       window.fbq("track", "Contact", {}, { eventID });
     }
+
+    // ✅ Si estás configurando eventos con Meta, NO redirige (para que no se cierre la herramienta)
+    if (META_CONFIG_MODE) return;
 
     // Redirige a WhatsApp (o multiagente) después de trackear
     setTimeout(() => {
