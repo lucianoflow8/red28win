@@ -44,7 +44,7 @@ export default function Home() {
 
     // Dispara Contact SOLO al click
     if (PIXEL_ID && typeof window !== "undefined" && window.fbq) {
-      window.fbq("track", "Contact", {}, { eventID });
+      window.fbq("track", "Lead", {}, { eventID });
     }
 
     // ✅ Si estás configurando eventos con Meta, NO redirige (para que no se cierre la herramienta)
@@ -53,7 +53,7 @@ export default function Home() {
     // Redirige a WhatsApp (o multiagente) después de trackear
     setTimeout(() => {
       window.location.href = WHATSAPP_LINK;
-    }, 120);
+    }, 300);
   };
 
   return (
